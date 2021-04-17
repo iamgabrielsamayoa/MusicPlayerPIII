@@ -19,11 +19,14 @@ namespace WindowsFormsApp1
         string[] canciones;
         int NumAleatorio = 0;
         RandomClass1 rdn = new RandomClass1();
+        int i;
         string ruta = "";
+        Nodo nuevo;
         //AxWMPLib.AxWindowsMediaPlayer Player = new AxWMPLib.AxWindowsMediaPlayer();
-        Lista addlist = new Lista();
+        clsListaDoble addlist = new clsListaDoble();
         OpenFileDialog addpath = new OpenFileDialog();
 
+        ListaCircular repeat = new ListaCircular();
         //Form1 ventanita = new Form1();
 
 
@@ -52,6 +55,40 @@ namespace WindowsFormsApp1
             }
             listBox1.EndUpdate();
             listBox1.Invalidate();
+        }
+
+        
+        public void recorrer()
+        {
+            //Nodos_C p;
+            if (nuevo != null)
+            {
+                nuevo = repeat.repeat.enlace; // siguiente nodo al de acceso
+
+                while (nuevo == repeat.repeat.enlace)
+                {
+                    if (listBox1.SelectedIndex < listBox1.Items.Count - 1)
+                    {
+
+                        listBox1.SelectedIndex += 1;
+
+                        nuevo = nuevo.enlace;
+                    }
+                    else
+                    {
+
+                        Player.URL = addpath.FileNames[0];
+                        listBox1.SelectedIndex = 0;
+                        nuevo = nuevo.enlace;
+                    }
+
+                    nuevo = nuevo.enlace;
+                }
+            }
+            else
+            {
+                MessageBox.Show("\t LISTA CIRCULAR VACIA");
+            }
         }
 
         private void Player_Enter(object sender, EventArgs e)
@@ -98,6 +135,8 @@ namespace WindowsFormsApp1
 
         }
 
+
+        //Open Specific Files
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -112,18 +151,19 @@ namespace WindowsFormsApp1
                 {
                     doc = addpath.SafeFileNames;
                     path = addpath.FileNames;
-                    for (int i = 0; i < addpath.SafeFileNames.Length; i++)
+                    for ( i = 0; i < addpath.SafeFileNames.Length; i++)
                     {
-                        addlist.insertarCanciones(addpath.FileNames[i]);
+                        addlist.insertarCabezaLista(addpath.FileNames[i]);
                         listBox1.Items.Add(addpath.SafeFileNames[i]);
 
+                        repeat.insertar(addpath.FileNames[i]);
+                        
                     }
                     Player.URL = addpath.FileNames[0];
                     listBox1.SelectedIndex = 0;
 
 
-                    int pausa;
-                    pausa = 0;
+                    
                 }
 
 
@@ -181,10 +221,10 @@ namespace WindowsFormsApp1
 
         private void Remove_Click(object sender, EventArgs e)
         {
-            int indice = listBox1.SelectedIndex;
+            string indice = listBox1.SelectedIndex.ToString();
 
-            addlist.deleteMusic(indice);
-            listBox1.Items.RemoveAt(indice);
+            addlist.eliminar(indice);
+            listBox1.Items.RemoveAt( Int32.Parse( indice));
             Player.Ctlcontrols.stop();
         }
 
@@ -202,6 +242,11 @@ namespace WindowsFormsApp1
             {
                 listBox1.SelectedIndex -= 1;
             }
+        }
+
+        private void Repeatbtn_Click(object sender, EventArgs e)
+        {
+           // repeat.lc = false;
         }
 
         private void button2_Click_1(object sender, EventArgs e)

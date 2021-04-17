@@ -68,7 +68,7 @@ namespace WindowsFormsApp1
         {
             Nodo actual, anterior;
             bool encontrado;
-            //inicializa los apuntadores
+            //inicializa los pointers
             Nodo dato = searchposition(cancion);
             actual = first;
             anterior = null;

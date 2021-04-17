@@ -183,7 +183,7 @@
             this.Previous.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Previous.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Previous.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Previous.Location = new System.Drawing.Point(406, 126);
+            this.Previous.Location = new System.Drawing.Point(456, 126);
             this.Previous.Name = "Previous";
             this.Previous.Size = new System.Drawing.Size(119, 32);
             this.Previous.TabIndex = 19;
@@ -196,7 +196,7 @@
             this.Remove.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Remove.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Remove.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Remove.Location = new System.Drawing.Point(406, 88);
+            this.Remove.Location = new System.Drawing.Point(456, 88);
             this.Remove.Name = "Remove";
             this.Remove.Size = new System.Drawing.Size(119, 32);
             this.Remove.TabIndex = 20;
